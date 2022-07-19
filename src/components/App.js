@@ -109,25 +109,6 @@ function App() {
         <span className="popup__error avatar-input-error"></span>
       </PopupWithForm>
       <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups}/>
-      <div className="popup popup_type_delete">
-        <div className="popup__container">
-          <button
-            type="button"
-            className="popup__close-button popup__close-button_type_delete"
-          ></button>
-          <h2 className="popup__title">Are you sure?</h2>
-          <form
-            className="popup__form popup__form_type_delete"
-            name="deleteCard"
-            action="#"
-            noValidate
-          >
-            <button className="popup__button popup__form-button" type="submit">
-              Yes
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
   );
 }

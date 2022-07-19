@@ -15,19 +15,21 @@ function Main({
   const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
-    api.getUserInfo()
-    .then(res => {
+    api
+      .getUserInfo()
+      .then((res) => {
         setUserName(res.name);
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
-    })
-    .catch(err => console.log(err));
-  }, [])
+      })
+      .catch((err) => console.log(err));
+  }, []);
   React.useEffect(() => {
-    api.getInitialCards()
-    .then(cards => setCards(cards))
-    .catch(err => console.log(err));
-  }, [])
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <main>
       <section className="user">
@@ -65,11 +67,12 @@ function Main({
         </button>
       </section>
       <section className="gallery">
- {cards && cards.map((card) => {
-    return (
-       <Card key={card._id} card={card} onCardClick={onCardClick} />
-    )
- })}
+        {cards &&
+          cards.map((card) => {
+            return (
+              <Card key={card._id} card={card} onCardClick={onCardClick} />
+            );
+          })}
       </section>
     </main>
   );
