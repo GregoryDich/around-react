@@ -30,10 +30,13 @@ class Api {
         headers: this._headers,
         body: JSON.stringify({
           name: values.name,
-          about: values.profession,
+          about: values.about,
         }),
       }).then((res) => this._checkResponse(res));
     }
+    changeLikeCardStatus(isLiked, card) {
+      return isLiked ? this.removeLike(card) : this.addLike(card);
+    } 
     deleteCard(card) {
       return fetch(`${this._baseUrl}/cards/${card._id}`, {
         method: "DELETE",

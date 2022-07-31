@@ -3,33 +3,18 @@ import avatarPencil from "../images/pencil.svg";
 import addButton from "../images/addButton.svg";
 import api from "../utils/api";
 import Card from "./Card";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main({
   onEditProfileClick,
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
 }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => setCards(cards))
-      .catch((err) => console.log(err));
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
   return (
     <main>
       <section className="user">
@@ -41,18 +26,22 @@ function Main({
               alt="avatar"
             />
           </div>
-          <img className="user__avatar-image" src={userAvatar} alt="jacques" />
+          <img
+            className="user__avatar-image"
+            src={currentUser.avatar}
+            alt="jacques"
+          />
         </div>
         <div className="user__information">
           <div className="user__name-wrapper">
-            <h1 className="user__name">{userName}</h1>
+            <h1 className="user__name">{currentUser.name}</h1>
             <button
               onClick={onEditProfileClick}
               type="button"
               className="user__edit-button"
             ></button>
           </div>
-          <p className="user__profession">{userDescription}</p>
+          <p className="user__profession">{currentUser.about}</p>
         </div>
         <button
           onClick={onAddPlaceClick}
@@ -70,7 +59,13 @@ function Main({
         {cards &&
           cards.map((card) => {
             return (
-              <Card key={card._id} card={card} onCardClick={onCardClick} />
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
+              />
             );
           })}
       </section>
