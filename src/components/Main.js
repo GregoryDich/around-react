@@ -56,8 +56,7 @@ function Main({
         </button>
       </section>
       <section className="gallery">
-        {cards &&
-          cards.map((card) => {
+        {cards.map((card) => {
             return (
               <Card
                 key={card._id}

@@ -26,7 +26,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
       onSubmit={handleSubmit}
     >
       <input
-        value={place || ""}
+        value={place}
         className="popup__form-input popup__form-input_type_title"
         type="text"
         placeholder="Title"
@@ -38,7 +38,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
       />
       <span className="popup__error place-input-error"></span>
       <input
-        value={url || ""}
+        value={url}
         className="popup__form-input popup__form-input_type_url"
         type="url"
         placeholder="Image URL"

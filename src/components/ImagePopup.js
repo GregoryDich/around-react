@@ -12,7 +12,7 @@ function ImagePopup({ selectedCard, onClose }) {
         <img
           className="popup__image"
           src={selectedCard ? selectedCard.link : "#"}
-          alt={selectedCard ? selectedCard.name : "alt"}
+          alt={selectedCard ? selectedCard.name : ""}
         />
         <span className="popup__image-title">
           {selectedCard ? selectedCard.name : ""}
